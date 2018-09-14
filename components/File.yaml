@@ -1,0 +1,9 @@
+schemas:  
+  File: 
+    required:
+    properties:
+      name:
+      type:
+      uri:
+      createdAt:
+      capturedAt: 

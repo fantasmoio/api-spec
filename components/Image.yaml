@@ -1,0 +1,31 @@
+schemas:  
+  Image:
+    type: object
+    required:
+    - timestamp
+    - uuid
+    - intrinsics
+    properties:
+      imageType:
+      resolution:
+      createdAt:
+        description: Creation time in seconds since the Unix epoch (January 1st, 1970,
+          UTC).
+        type: number
+        format: double
+      uuid:
+        type: string
+        format: binary
+      intrinsics:
+        "$ref": "#/definitions/intrinsics"
+      pose:
+        "$ref": "#/definitions/pose"
+      motionType:
+        type: string
+        enum:
+        - stationary
+        - walking
+        - running
+        - automotive
+        - cycling
+        - unknown

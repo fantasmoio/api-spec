@@ -1,0 +1,8 @@
+schemas:  
+  Floorplan:
+    required:
+    properties:
+      file:
+          "$ref": "#/definitions/File"
+      level: #The logical floor of the building.
+      name: 

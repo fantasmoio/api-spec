@@ -1,0 +1,9 @@
+schemas:  
+  Pointcloud:
+    required:
+    properties:
+      file:
+        "$ref": "#/definitions/File"
+      globalPose:
+        "$ref": "#/definitions/Pose"
+      potreeUri:

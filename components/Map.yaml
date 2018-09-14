@@ -1,0 +1,44 @@
+schemas:
+  Map:
+    required:
+      # - 
+      # - name
+    properties:
+      id: # uuid, gen'd by backend
+      name: # human readable
+      placemark:  
+      location:
+      createdAt:
+      updatedAt:
+      deletedAt:
+      pointclouds:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/Pointcloud.yaml'
+      e57s:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      revitModels: # .rvt
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      recapProjects: # .rcp
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      otherFiles:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      floorplans:
+        type: array
+        items:
+          type: array
+          items:
+            $ref: 'https://github.com/fantasmoio/api-spec/components/Floorplan.yaml'
+      images: 
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/Image.yaml'
+        

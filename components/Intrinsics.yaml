@@ -1,0 +1,37 @@
+schemas: 
+  Intrinsics:
+    type: object
+    required:
+    - fx
+    - fy
+    - cx
+    - cy
+    properties:
+      fx:
+        description: Focal length in pixels.
+        type: number
+        format: float
+      fy:
+        description: Focal length in pixels.
+        type: number
+        format: float
+      cx:
+        description: Principal point offset along the image *x* axis in pixels.
+        type: number
+        format: float
+      cy:
+        description: Principal point offset along the image *y* axis in pixels.
+        type: number
+        format: float
+      radialDistortion:
+        type: array
+        maximum: 6
+        items:
+          type: number
+          format: float
+      tangentialDistortion:
+        type: array
+        maximum: 2
+        items:
+          type: number
+          format: float

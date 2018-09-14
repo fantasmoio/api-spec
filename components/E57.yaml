@@ -1,0 +1,6 @@
+schemas:
+  E57:
+    required:
+    properties: 
+      file:
+        "$ref": "#/definitions/File"

@@ -1,0 +1,6 @@
+schemas:
+  Coordinate: # The geographical coordinate information.
+    required:
+    properties:
+      latitude:
+      longitude:

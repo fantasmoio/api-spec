@@ -1,0 +1,14 @@
+schemas:
+  Placemark: #A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
+    required:
+    properties:
+      name:
+      isoCountryCode:
+      country:
+      postalCode:
+      administrativeArea:
+      subAdministrativeArea:
+      locality:
+      subLocality:
+      thoroughfare:
+      subThoroughfare:

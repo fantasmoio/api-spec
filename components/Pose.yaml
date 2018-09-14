@@ -1,0 +1,22 @@
+schemas:
+  Pose:
+    type: object
+    required:
+    - position
+    - quaternion
+    properties:
+      source:
+        type: string
+        enum:
+        - device
+        - keyframe
+        - interpolated
+      frame:
+        type: string
+        enum:
+        - earth
+        - local
+      position:
+        "$ref": "#/definitions/Position"
+      quaternion:
+        "$ref": "#/definitions/Quaternion"  
