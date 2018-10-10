@@ -1,0 +1,15 @@
+schemas:
+  PipelineEvent:
+    type: object
+    required:
+      - timestamp
+      - message
+      - step
+    properties:
+      timestamp:
+        type: string
+        format: date-time
+        description: Creation time in seconds since the Unix epoch
+      message:
+        type: string
+        description: describes which step in the pipeline has been reached
