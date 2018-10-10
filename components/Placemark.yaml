@@ -2,6 +2,7 @@ schemas:
   Placemark:
     type: object
     required:
+      - name
     properties:
       name:
       isoCountryCode:

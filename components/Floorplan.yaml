@@ -2,6 +2,9 @@ schemas:
   Floorplan:
     type: object
     required:
+      - file
+      - name
+      - level
     properties:
       file:
           "$ref": "#/definitions/File"

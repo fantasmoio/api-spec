@@ -2,6 +2,7 @@ schemas:
   Location:
     type: object
     required:
+      - coordinate
     properties:
       coordinate:
       altitude: # The altitude, measured in meters.

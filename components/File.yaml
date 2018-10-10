@@ -2,6 +2,10 @@ schemas:
   File: 
     type: object
     required:
+      - name
+      - type
+      - uri
+      - capturedAt
     properties:
       name:
       type:
