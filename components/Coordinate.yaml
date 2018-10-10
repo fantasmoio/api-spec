@@ -1,5 +1,6 @@
 schemas:
   Coordinate: # The geographical coordinate information.
+    type: object
     required:
     properties:
       latitude:

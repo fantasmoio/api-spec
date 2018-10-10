@@ -1,5 +1,6 @@
 schemas:
   E57:
+    type: object
     required:
     properties: 
       file:

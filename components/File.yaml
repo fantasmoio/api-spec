@@ -1,5 +1,6 @@
 schemas:  
   File: 
+    type: object
     required:
     properties:
       name:

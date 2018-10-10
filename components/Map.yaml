@@ -1,5 +1,6 @@
 schemas:
   Map:
+    type: object
     required:
       - name
       - createdAt

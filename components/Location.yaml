@@ -1,5 +1,6 @@
 schemas:
   Location:
+    type: object
     required:
     properties:
       coordinate:

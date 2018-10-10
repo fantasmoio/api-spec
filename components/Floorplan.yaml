@@ -1,5 +1,6 @@
 schemas:  
   Floorplan:
+    type: object
     required:
     properties:
       file:

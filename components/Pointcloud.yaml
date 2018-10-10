@@ -1,5 +1,6 @@
 schemas:  
   Pointcloud:
+    type: object
     required:
     properties:
       file:

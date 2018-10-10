@@ -1,5 +1,6 @@
 schemas:
-  Placemark: #A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
+  Placemark:
+    type: object
     required:
     properties:
       name:
