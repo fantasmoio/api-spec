@@ -22,10 +22,8 @@ schemas:
         type: string
         format: date-time
       placemark:
-        type: object
         $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
       location:
-        type: object
         $ref: 'https://github.com/fantasmoio/api-spec/components/Location.yaml'
       pointclouds:
         type: array

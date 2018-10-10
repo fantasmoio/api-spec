@@ -9,3 +9,6 @@ schemas:
       globalPose:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Pose.yaml'
       potreeUri:
+        type: string
+        format: uri
+        description: https uri link to the cloud storage location where the Potree (pointcloud streaming) directory lives

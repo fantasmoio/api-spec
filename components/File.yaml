@@ -8,7 +8,20 @@ schemas:
       - capturedAt
     properties:
       name:
+        type: string
+        description: name of the file, including the extension
       type:
+        type: string
+        description: extension of the file, i.e. 'zip', 'jpeg', or 'pdf'
       uri:
+        type: string
+        format: uri
+        description: https link to the resource
       createdAt:
-      capturedAt: 
+        type: string
+        format: date-time
+        description: time in seconds (Unix Epoch) that this record was created
+      capturedAt:
+        type: string
+        format: date-time
+        description: time in seconds (Unix Epoch) that the File was created

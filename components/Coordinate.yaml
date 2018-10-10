@@ -6,4 +6,6 @@ schemas:
       - longitude
     properties:
       latitude:
+        type: string
       longitude:
+        type: string

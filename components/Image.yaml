@@ -11,12 +11,10 @@ schemas:
       pose:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Pose.yaml'
       imageType:
+        type: string
       resolution:
+        type: string
       createdAt:
-        description: Creation time in seconds since the Unix epoch (January 1st, 1970,
-          UTC).
-        type: number
-        format: double
       uuid:
         type: string
         format: binary
