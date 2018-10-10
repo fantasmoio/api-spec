@@ -3,6 +3,6 @@ schemas:
     type: object
     required:
       - file
-    properties: 
+    properties:
       file:
         "$ref": "#/definitions/File"

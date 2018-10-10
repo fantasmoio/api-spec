@@ -1,4 +1,4 @@
-schemas:  
+schemas:
   Floorplan:
     type: object
     required:

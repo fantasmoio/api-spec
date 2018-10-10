@@ -1,10 +1,10 @@
-schemas:  
+schemas:
   Image:
     type: object
     required:
-    - timestamp
+      - timestamp
     - uuid
-    - intrinsics
+      - intrinsics
     properties:
       imageType:
       resolution:
@@ -23,9 +23,9 @@ schemas:
       motionType:
         type: string
         enum:
-        - stationary
-        - walking
-        - running
-        - automotive
-        - cycling
-        - unknown
+          - stationary
+          - walking
+          - running
+          - automotive
+          - cycling
+          - unknown

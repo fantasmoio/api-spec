@@ -1,4 +1,4 @@
-schemas:  
+schemas:
   Pointcloud:
     type: object
     required:

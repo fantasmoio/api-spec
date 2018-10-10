@@ -2,8 +2,8 @@ schemas:
   Pose:
     type: object
     required:
-    - position
-    - quaternion
+      - position
+      - quaternion
     properties:
       source:
         type: string

@@ -1,5 +1,5 @@
-schemas:  
-  File: 
+schemas:
+  File:
     type: object
     required:
       - name

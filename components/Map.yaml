@@ -53,8 +53,7 @@ schemas:
           type: array
           items:
             $ref: 'https://github.com/fantasmoio/api-spec/components/Floorplan.yaml'
-      images: 
+      images:
         type: array
         items:
           $ref: 'https://github.com/fantasmoio/api-spec/components/Image.yaml'
-        
