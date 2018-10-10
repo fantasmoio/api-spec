@@ -6,6 +6,10 @@ schemas:
     - uuid
       - intrinsics
     properties:
+      intrinsics:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Intrinsics.yaml'
+      pose:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Pose.yaml'
       imageType:
       resolution:
       createdAt:
@@ -16,10 +20,7 @@ schemas:
       uuid:
         type: string
         format: binary
-      intrinsics:
-        "$ref": "#/definitions/intrinsics"
-      pose:
-        "$ref": "#/definitions/pose"
+        description: Creation time in seconds since the Unix epoch (January 1st, 1970, UTC).
       motionType:
         type: string
         enum:

@@ -5,4 +5,4 @@ schemas:
       - file
     properties:
       file:
-        "$ref": "#/definitions/File"
+        $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
