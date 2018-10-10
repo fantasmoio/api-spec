@@ -3,9 +3,11 @@ schemas:
     type: object
     required:
       - timestamp
-    - uuid
       - intrinsics
     properties:
+      id:
+        type: string
+        format: uuid
       intrinsics:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Intrinsics.yaml'
       pose:
@@ -15,9 +17,8 @@ schemas:
       resolution:
         type: string
       createdAt:
-      uuid:
         type: string
-        format: binary
+        format: date-time
         description: Creation time in seconds since the Unix epoch (January 1st, 1970, UTC).
       motionType:
         type: string
