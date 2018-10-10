@@ -11,6 +11,9 @@ schemas:
       createdAt:
       updatedAt:
       deletedAt:
+      uploadedBy:
+        type: string
+        description: Auth0 id of the current user
       upload:
         type: object
         $ref: 'https://github.com/fantasmoio/api-spec/components/Upload.yaml'
