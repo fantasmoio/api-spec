@@ -1,8 +1,10 @@
 schemas:
   Map:
     required:
-      # - 
-      # - name
+      - createdAt
+      - name
+      - upload
+      - uploadedBy
     properties:
       id: # uuid, gen'd by backend
       name: # human readable
