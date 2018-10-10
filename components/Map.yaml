@@ -8,11 +8,16 @@ schemas:
     properties:
       id: # uuid, gen'd by backend
       name: # human readable
-      placemark:  
-      location:
+        type: string
       createdAt:
       updatedAt:
       deletedAt:
+      placemark:
+        type: object
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
+      location:
+        type: object
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Location.yaml'
       pointclouds:
         type: array
         items:
