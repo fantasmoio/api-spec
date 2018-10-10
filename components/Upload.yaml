@@ -1,0 +1,24 @@
+schemas:
+  Upload:
+    required:
+      - files
+      - status
+    properties:
+      status:
+        type: string
+        description: status of map upload in the processing pipeline
+      errorMessage:
+        type: string
+        description: if the map upload fails in the pipeline, the error will be reported here
+      files:
+        type: array
+        items:
+          required:
+            - filename
+          properties:
+            filename:
+              type: string
+              description: plain filename including extension
+            status:
+              type: string
+              description: verification status of file. starts off as 'incomplete' before it has been uploaded

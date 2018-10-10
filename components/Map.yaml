@@ -11,6 +11,9 @@ schemas:
       createdAt:
       updatedAt:
       deletedAt:
+      upload:
+        type: object
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Upload.yaml'
       pointclouds:
         type: array
         items:
