@@ -7,9 +7,6 @@ schemas:
       status:
         type: string
         description: status of map upload in the processing pipeline
-      errorMessage:
-        type: string
-        description: if the map upload fails in the pipeline, the error will be reported here
       files:
         type: array
         items:
@@ -22,3 +19,16 @@ schemas:
             status:
               type: string
               description: verification status of file. starts off as 'incomplete' before it has been uploaded
+      error:
+        type: object
+        description: if the map upload fails in the pipeline, the error will be reported here
+        properties:
+          name:
+            type: string
+            description: short error name
+          message:
+            type: string
+            description: verbose error message
+          occuredAt:
+            type: date-time
+            description: time error occured in Unix Epoch seconds
