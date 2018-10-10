@@ -1,17 +1,25 @@
 schemas:
   Map:
     required:
-      - createdAt
       - name
+      - createdAt
       - upload
       - uploadedBy
     properties:
       id: # uuid, gen'd by backend
+        type: string
+        format: uuid
       name: # human readable
         type: string
       createdAt:
+        type: string
+        format: date-time
       updatedAt:
+        type: string
+        format: date-time
       deletedAt:
+        type: string
+        format: date-time
       placemark:
         type: object
         $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
