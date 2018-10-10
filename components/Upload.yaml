@@ -32,3 +32,7 @@ schemas:
           occuredAt:
             type: date-time
             description: time error occured in Unix Epoch seconds
+      pipelineEvents:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/PipelineEvent.yaml'
