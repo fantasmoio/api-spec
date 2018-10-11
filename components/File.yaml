@@ -9,19 +9,18 @@ schemas:
     properties:
       name:
         type: string
-        description: name of the file, including the extension
+        description: Name of the file including the extension.
       type:
         type: string
-        description: extension of the file, i.e. 'zip', 'jpeg', or 'pdf'
+        description: Extension of the file.
       uri:
         type: string
-        format: uri
-        description: https link to the resource
+        description: Resource URI.
       createdAt:
-        type: string
-        format: date-time
-        description: time in seconds (Unix Epoch) that this record was created
+        type: number 
+        format: double 
+        description: Time in seconds since Unix Epoch that this record was created.
       capturedAt:
-        type: string
-        format: date-time
-        description: time in seconds (Unix Epoch) that the File was created
+        type: number
+        format: double
+        description: Time in seconds since Unix Epoch that this `File` was created.

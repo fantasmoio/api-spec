@@ -7,11 +7,11 @@ schemas:
       - level
     properties:
       name:
+        description: Name of the floor which will may not be a number (e.g., 'lobby', 'mezzanine', etc) or the related filename.
         type: string
-        description: name of the floor. Will not always be a number (i.e. can be 'lobby' or 'mezzanine') or the related filename
       file:
         $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
       level:
-        type: number
-        format: integer
+        type: integer
+        format: int32
         description: The logical floor of the building.

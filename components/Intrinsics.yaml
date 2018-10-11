@@ -1,5 +1,6 @@
 schemas:
   Intrinsics:
+    description: Parameters describing the focal length, format, principal point, and distortion of the image sensor.
     type: object
     required:
       - fx

@@ -2,8 +2,7 @@ schemas:
   Image:
     type: object
     required:
-      - timestamp
-      - intrinsics
+      - capturedAt
     properties:
       id:
         type: string
@@ -15,17 +14,11 @@ schemas:
       imageType:
         type: string
       resolution:
-        type: string
-      createdAt:
-        type: string
-        format: date-time
-        description: Creation time in seconds since the Unix epoch (January 1st, 1970, UTC).
-      motionType:
-        type: string
-        enum:
-          - stationary
-          - walking
-          - running
-          - automotive
-          - cycling
-          - unknown
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Resolution.yaml'
+      capturedAt:
+        type: number
+        format: double
+        description: Time in seconds since Unix Epoch that this image was captured.
+      motionActivity:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/MotionActivity.yaml'
+       

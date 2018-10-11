@@ -1,0 +1,16 @@
+schemas:
+  Resolution:
+    description: The dimensions of the image in pixels.
+    type: object
+    required:
+      - height
+      - width
+    properties:
+      height:
+        type: integer
+        format: int32 
+        description: The height of the image in pixels.
+      width:
+        type: integer
+        format: int32
+        description: The width of the image in pixels.

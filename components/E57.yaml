@@ -1,5 +1,6 @@
 schemas:
   E57:
+    description: A compact, vendor-neutral format for storing point clouds, images, and metadata produced by 3D imaging systems, such as laser scanners.
     type: object
     required:
       - file
