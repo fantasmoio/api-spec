@@ -1,8 +1,17 @@
-schemas:  
+schemas:
   Floorplan:
+    type: object
     required:
+      - file
+      - name
+      - level
     properties:
+      name:
+        type: string
+        description: name of the floor. Will not always be a number (i.e. can be 'lobby' or 'mezzanine') or the related filename
       file:
-          "$ref": "#/definitions/File"
-      level: #The logical floor of the building.
-      name: 
+        $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      level:
+        type: number
+        format: integer
+        description: The logical floor of the building.

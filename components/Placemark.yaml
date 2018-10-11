@@ -1,14 +1,27 @@
 schemas:
-  Placemark: #A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
+  Placemark:
+    type: object
     required:
+      - name
+    description: A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
     properties:
       name:
+        type: string
       isoCountryCode:
+        type: string
       country:
+        type: string
       postalCode:
+        type: string
       administrativeArea:
+        type: string
       subAdministrativeArea:
+        type: string
       locality:
+        type: string
       subLocality:
+        type: string
       thoroughfare:
+        type: string
       subThoroughfare:
+        type: string

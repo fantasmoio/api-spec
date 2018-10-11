@@ -2,8 +2,8 @@ schemas:
   Pose:
     type: object
     required:
-    - position
-    - quaternion
+      - position
+      - quaternion
     properties:
       source:
         type: string
@@ -17,6 +17,6 @@ schemas:
         - earth
         - local
       position:
-        "$ref": "#/definitions/Position"
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Position.yaml'
       quaternion:
-        "$ref": "#/definitions/Quaternion"  
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Quaternion.yaml'

@@ -1,12 +1,11 @@
 schemas:
   Position:
     type: object
-    description: 3D Position in a right-handed coordinate system with -Y up (i.e.,
-      OpenCV coordinate system).
+    description: 3D Position in a right-handed coordinate system with -Y up (i.e., OpenCV coordinate system).
     required:
-    - x
-    - y
-    - z
+      - x
+      - y
+      - z
     properties:
       x:
         description: Position along the x-axis in meters.

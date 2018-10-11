@@ -1,11 +1,11 @@
-schemas: 
+schemas:
   Intrinsics:
     type: object
     required:
-    - fx
-    - fy
-    - cx
-    - cy
+      - fx
+      - fy
+      - cx
+      - cy
     properties:
       fx:
         description: Focal length in pixels.

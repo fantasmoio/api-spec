@@ -1,6 +1,8 @@
 schemas:
   E57:
+    type: object
     required:
-    properties: 
+      - file
+    properties:
       file:
-        "$ref": "#/definitions/File"
+        $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'

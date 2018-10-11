@@ -1,10 +1,29 @@
 schemas:
   Location:
+    type: object
     required:
+      - coordinate
     properties:
       coordinate:
-      altitude: # The altitude, measured in meters.
-      floor: # The logical floor of the building in which the user is located.
-      horizontalAccuracy: # The radius of uncertainty for the location, measured in meters.
-      verticalAccuracy: # The accuracy of the altitude value, measured in meters.
-      timestamp: # The time at which this location was determined.
+        type: object
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Coordinate.yaml'
+      altitude:
+        type: number
+        format: float
+        description: The altitude, measured in meters.
+      floor:
+        type: number
+        format: integer
+        description: The logical floor of the building in which the user is located.
+      horizontalAccuracy:
+        type: number
+        format: float
+        description: The radius of uncertainty for the location, measured in meters.
+      verticalAccuracy:
+        type: number
+        format: float
+        description: The accuracy of the altitude value, measured in meters.
+      timestamp:
+        type: string
+        format: date-time
+        description: the time at which this location was determined.

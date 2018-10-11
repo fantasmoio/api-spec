@@ -1,22 +1,35 @@
 schemas:
   Map:
+    type: object
     required:
-      # - 
-      # - name
+      - name
+      - createdAt
+      - upload
+      - uploadedBy
     properties:
       id: # uuid, gen'd by backend
+        type: string
+        format: uuid
       name: # human readable
-      placemark:  
-      location:
+        type: string
       createdAt:
+        type: string
+        format: date-time
       updatedAt:
+        type: string
+        format: date-time
       deletedAt:
+        type: string
+        format: date-time
       uploadedBy:
         type: string
         description: Auth0 id of the current user
       upload:
-        type: object
         $ref: 'https://github.com/fantasmoio/api-spec/components/Upload.yaml'
+      placemark:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
+      location:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Location.yaml'
       pointclouds:
         type: array
         items:
@@ -43,8 +56,7 @@ schemas:
           type: array
           items:
             $ref: 'https://github.com/fantasmoio/api-spec/components/Floorplan.yaml'
-      images: 
+      images:
         type: array
         items:
           $ref: 'https://github.com/fantasmoio/api-spec/components/Image.yaml'
-        

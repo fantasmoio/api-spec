@@ -1,11 +1,11 @@
-schemas:    
+schemas:
   Quaternion:
     type: object
     required:
-    - w
-    - x
-    - y
-    - z
+      - w
+      - x
+      - y
+      - z
     properties:
       w:
         description: Normalized quaternion *w* component.
