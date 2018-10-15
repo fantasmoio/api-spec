@@ -1,5 +1,6 @@
+openapi: "3.0.2"
 schemas:
-  Map:
+  Place:
     type: object
     required:
       - name
@@ -60,3 +61,8 @@ schemas:
         type: array
         items:
           $ref: 'https://github.com/fantasmoio/api-spec/components/Image.yaml'
+      scans:
+        type: array
+        items: 
+          type: string
+          format: uuid

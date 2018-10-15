@@ -1,3 +1,4 @@
+openapi: "3.0.2"
 schemas:
   MotionActivity:
     description: The type of motion the device is undergoing as time of capture.

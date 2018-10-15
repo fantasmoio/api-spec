@@ -1,24 +1,28 @@
+openapi: "3.0.2"
 schemas:
   Image:
     type: object
     required:
-      - capturedAt
+      - id
+      - filetype
+      - intrinsics
     properties:
       id:
         type: string
         format: uuid
+      filetype:
+        description: Extension of the file.
+        type: string
       intrinsics:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Intrinsics.yaml'
       pose:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Pose.yaml'
-      imageType:
-        type: string
       resolution:
         $ref: 'https://github.com/fantasmoio/api-spec/components/Resolution.yaml'
-      capturedAt:
+      generatedAt:
         type: number
         format: double
-        description: Time in seconds since Unix Epoch that this image was captured.
+        description: Time in seconds since Unix Epoch that this image was captured on the device.
       motionActivity:
         $ref: 'https://github.com/fantasmoio/api-spec/components/MotionActivity.yaml'
        

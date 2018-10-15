@@ -1,11 +1,15 @@
+openapi: "3.0.2"
 schemas:
   Floorplan:
     type: object
     required:
+      - id
       - file
-      - name
       - level
     properties:
+      id:
+        type: string
+        format: uuid
       name:
         description: Name of the floor which will may not be a number (e.g., 'lobby', 'mezzanine', etc) or the related filename.
         type: string

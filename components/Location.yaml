@@ -1,3 +1,4 @@
+openapi: "3.0.2"
 schemas:
   Location:
     description: Geographical information relating to a sensor measurement. 
