@@ -1,0 +1,54 @@
+openapi: "3.0.2"
+schemas:
+  ImageSet:
+    required:
+      - files
+      - status
+    properties:
+      cpsArchive: 
+        description: Zip archive of cps map files.
+        type: string
+        format: uri
+      createdAt:
+        description: Time in seconds since Unix Epoch that this record was created.
+        type: number 
+        format: double 
+      imageArchive:
+        description: Zip archive of image files.
+        type: string
+        format: uri
+      poseArchive: 
+        description: Zip archive of poses json files.
+        type: string
+        format: uri
+      masksArchive: 
+        description: Zip archive of semantic mask files.
+        type: string
+        format: uri
+      error:
+        type: object
+        description: if the map upload fails in the pipeline, the error will be reported here
+        properties:
+          name:
+            description: Short error name.
+            type: string
+          message:
+            description: Verbose error message.
+            type: string
+          occuredAt:
+            description: Time in seconds since Unix Epoch that the error occurred.
+            type: string
+            format: double
+      
+      
+      
+      
+      events:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/Event.yaml'
+      status:
+        description: Status in the processing pipeline.
+        type: string
+      place:
+

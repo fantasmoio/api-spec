@@ -1,0 +1,38 @@
+openapi: "3.0.2"
+schemas:
+  SensorData:
+    type: object
+    required:
+      - createdAt
+      - data
+      - id
+      - uploadedBy
+    properties:
+      createdAt:
+        description: Time in seconds since Unix Epoch that this record was created.
+        type: number 
+        format: double 
+      id:
+        description: Unique identifer for this record.
+        type: string
+        format: uuid
+      location:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Location.yaml'
+      places:
+        description: Place IDs which correspond to sensor data embedded in this scan.
+        type: array
+        items:
+          type: string
+          format: uuid
+      placemark:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
+      uploadedBy:
+        description: ID of the user that submitted the data.
+        type: string
+        format: uuid
+      data:
+        description: List of files contained inside the posted zip.
+        type: array
+        items:
+          type: string
+      
