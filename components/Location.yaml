@@ -1,30 +1,30 @@
 openapi: "3.0.2"
 schemas:
   Location:
-    description: Geographical information relating to a sensor measurement. 
+    description: Geographical information relating to a sensor measurement. Patterned after CLLocation from iOS CoreLocation.
     type: object
     required:
       - coordinate
     properties:
-      coordinate:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Coordinate.yaml'
       altitude:
+        description: The altitude, measured in meters.
         type: number
         format: float
-        description: The altitude, measured in meters.
+      coordinate:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/coordinate.yaml'
       floor:
+        description: The logical floor of the building.
         type: integer
         format: int32
-        description: The logical floor of the building.
-      horizontalAccuracy:
-        type: number
-        format: float
-        description: The radius of uncertainty for the location, measured in meters.
-      verticalAccuracy:
-        type: number
-        format: float
-        description: The accuracy of the altitude value, measured in meters.
-      capturedAt:
+      generatedAt:
+        description: Time in seconds since Unix Epoch that this location was recorded.
         type: number
         format: double
-        description: Time in seconds since Unix Epoch that this location was captured.
+      horizontalAccuracy:
+        description: The radius of uncertainty for the location, measured in meters.
+        type: number
+        format: float
+      verticalAccuracy:
+        description: The accuracy of the altitude value, measured in meters.
+        type: number
+        format: float

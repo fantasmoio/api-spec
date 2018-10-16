@@ -1,6 +1,7 @@
 openapi: "3.0.2"
 schemas:
-  Quaternion:
+  Orientation:
+    description: Quaternion representation of an orientation.
     type: object
     required:
       - w

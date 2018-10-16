@@ -1,23 +1,30 @@
 openapi: "3.0.2"
 schemas:
   File:
+    description: A blob. 
     type: object
     required:
+      - createdAt
       - filetype
       - uri
-      - createdAt
     properties:
-      filetype:
-        description: Extension of the file.
-        type: string
-      uri:
-        description: A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource.
-        type: string
       createdAt:
         description: Time in seconds since Unix Epoch that this record was created.
         type: number 
         format: double 
+      filetype:
+        description: Extension of the file.
+        type: string
       generatedAt:
         description: Time in seconds since Unix Epoch that this `File` was generated. For example, the time at which an image was captured on a device or the time at which an e57 was created on disk.
         type: number
         format: double
+      place:  
+        description: ID of the place that this object represents. 
+        type: string
+        format: uuid
+      pose:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/pose.yaml'
+      uri:
+        description: A Uniform Resource Identifier (URI) is a string of characters that unambiguously identifies a particular resource.
+        type: string

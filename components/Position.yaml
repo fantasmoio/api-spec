@@ -1,22 +1,22 @@
 openapi: "3.0.2"
 schemas:
   Position:
+    description: 3D Position in a right-handed coordinate system with the negative `y` axis pointed upwards (i.e., OpenCV coordinate system).
     type: object
-    description: 3D Position in a right-handed coordinate system with -Y up (i.e., OpenCV coordinate system).
     required:
       - x
       - y
       - z
     properties:
       x:
-        description: Position along the x-axis in meters.
+        description: Position along the `x`-axis in meters.
         type: number
         format: float
       y:
-        description: Position along the y-axis in meters.
+        description: Position along the `y`-axis in meters.
         type: number
         format: float
       z:
-        description: Position along the z-axis in meters.
+        description: Position along the `z`-axis in meters.
         type: number
         format: float

@@ -8,10 +8,10 @@ schemas:
       - width
     properties:
       height:
+        description: The height of the image in pixels.
         type: integer
         format: int32 
-        description: The height of the image in pixels.
       width:
+        description: The width of the image in pixels.
         type: integer
         format: int32
-        description: The width of the image in pixels.
