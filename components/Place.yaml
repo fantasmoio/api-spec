@@ -1,67 +1,63 @@
 openapi: "3.0.2"
 schemas:
   Place:
+    description: Canonical representation of a physical location that includes metadata and spatial data about that location. Scans and data can be added, updated to the map as it evolves overtime. 
     type: object
     required:
       - name
       - createdAt
-      - upload
-      - uploadedBy
     properties:
-      id: # uuid, gen'd by backend
+      id: 
         type: string
         format: uuid
-      name: # human readable
+      name:
+        description: Human readable name.
         type: string
       createdAt:
-        type: string
-        format: date-time
+        description: Time in seconds since Unix Epoch that this record was created.
+        type: number 
+        format: double 
       updatedAt:
-        type: string
-        format: date-time
+        description: Time in seconds since Unix Epoch that this record was updated.
+        type: number 
+        format: double 
       deletedAt:
+        description: Time in seconds since Unix Epoch that this record was (soft) deleted.
+        type: number 
+        format: double 
+      ownedBy:
+        description: User ID of the owner.
         type: string
-        format: date-time
-      uploadedBy:
-        type: string
-        description: Auth0 id of the current user
-      upload:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Upload.yaml'
+        format: uuid
       placemark:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Placemark.yaml'
+        $ref: 'https://github.com/fantasmoio/api-spec/components/placemark.yaml'
       location:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Location.yaml'
-      pointclouds:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/location.yaml'
+      files:
+        description: Spatial data files associated with this place.
         type: array
         items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/Pointcloud.yaml'
-      e57s:
-        type: array
-        items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
-      revitModels: # .rvt
-        type: array
-        items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
-      recapProjects: # .rcp
-        type: array
-        items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
-      otherFiles:
-        type: array
-        items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+          $ref: 'https://github.com/fantasmoio/api-spec/components/file.yaml'
       floorplans:
+        description: Floor plan files associated with this place.
         type: array
         items:
           type: array
           items:
-            $ref: 'https://github.com/fantasmoio/api-spec/components/Floorplan.yaml'
+            $ref: 'https://github.com/fantasmoio/api-spec/components/floorplan.yaml'
       images:
+        description: Spatially referenced images associated with this place.
         type: array
         items:
-          $ref: 'https://github.com/fantasmoio/api-spec/components/Image.yaml'
-      scans:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/image.yaml'
+      sensorDatas:
+        description: IDs of uploaded sensor data associated with this place.
+        type: array
+        items: 
+          type: string
+          format: uuid
+      imageSets:
+        description: IDs of image sets associated with this place.
         type: array
         items: 
           type: string

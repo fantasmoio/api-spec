@@ -1,0 +1,14 @@
+openapi: "3.0.2"
+schemas:
+  Image:
+    description: An image file with associated metadata.
+    type: object
+    required:
+      - file
+      - imageMetadata
+    properties:
+      file:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/file.yaml'
+      imageMetadata:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/image-metadata.yaml'
+       
