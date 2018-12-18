@@ -29,6 +29,9 @@ schemas:
         description: User ID of the owner.
         type: string
         format: uuid
+      ownerEmail:
+        description: Email address of the owner.
+        type: string
       placemark:
         $ref: 'https://github.com/fantasmoio/api-spec/components/placemark.yaml'
       location:
