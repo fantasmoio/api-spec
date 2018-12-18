@@ -1,26 +1,28 @@
+openapi: "3.0.2"
 schemas:
   Intrinsics:
+    description: Parameters describing the focal length, format, principal point, and distortion of the image sensor.
     type: object
     required:
-      - fx
-      - fy
       - cx
       - cy
+      - fx
+      - fy
     properties:
-      fx:
-        description: Focal length in pixels.
-        type: number
-        format: float
-      fy:
-        description: Focal length in pixels.
-        type: number
-        format: float
       cx:
         description: Principal point offset along the image *x* axis in pixels.
         type: number
         format: float
       cy:
         description: Principal point offset along the image *y* axis in pixels.
+        type: number
+        format: float
+      fx:
+        description: Focal length in pixels.
+        type: number
+        format: float
+      fy:
+        description: Focal length in pixels.
         type: number
         format: float
       radialDistortion:

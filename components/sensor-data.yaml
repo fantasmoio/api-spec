@@ -1,0 +1,39 @@
+openapi: "3.0.2"
+schemas:
+  SensorData:
+    description: A heterogeneous data set captured by one or more sensors which may contain data relating to one or more places.
+    type: object
+    required:
+      - createdAt
+      - data
+      - id
+      - uploadedBy
+    properties:
+      createdAt:
+        description: Time in seconds since Unix Epoch that this record was created.
+        type: number 
+        format: double 
+      data:
+        description: List of files contained inside the posted zip.
+        type: array
+        items:
+          type: string
+      id:
+        description: Unique identifer for this record.
+        type: string
+        format: uuid
+      location:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/location.yaml'
+      places:
+        description: ID of the places that this object represents.
+        type: array
+        items:
+          type: string
+          format: uuid
+      placemark:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/placemark.yaml'
+      uploadedBy:
+        description: ID of the user that submitted the data.
+        type: string
+        format: uuid
+      

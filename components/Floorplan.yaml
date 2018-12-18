@@ -1,17 +1,25 @@
+openapi: "3.0.2"
 schemas:
   Floorplan:
+    description: A collection of references to the relationships between rooms, spaces, traffic patterns, and other physical features at one level of a structure.
     type: object
     required:
-      - file
-      - name
+      - files
       - level
+      - place
     properties:
       name:
+        description: Name of the floor which will may not be a number (e.g., 'lobby', 'mezzanine', etc) or the related filename.
         type: string
-        description: name of the floor. Will not always be a number (i.e. can be 'lobby' or 'mezzanine') or the related filename
-      file:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/File.yaml'
+      files:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/file.yaml'
       level:
-        type: number
-        format: integer
+        type: integer
+        format: int32
         description: The logical floor of the building.
+      place:  
+        description: ID of the place that this object represents. 
+        type: string
+        format: uuid

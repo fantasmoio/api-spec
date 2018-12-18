@@ -1,22 +1,19 @@
+openapi: "3.0.2"
 schemas:
   Pose:
+    description: The position and orientation relative to a frame of reference.
     type: object
     required:
       - position
       - quaternion
     properties:
-      source:
+      referenceFrame:
+        description: When the reference frame is `local`, the origin of the coordinate system for this pose is relative to the device or the process that generated it. When the reference frame is `place`, the coordinate system of this pose is consistent with that of the place.
         type: string
         enum:
-        - device
-        - keyframe
-        - interpolated
-      frame:
-        type: string
-        enum:
-        - earth
         - local
+        - place
       position:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Position.yaml'
-      quaternion:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Quaternion.yaml'
+        $ref: 'https://github.com/fantasmoio/api-spec/components/position.yaml'
+      orientation:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/orientation.yaml'

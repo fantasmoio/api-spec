@@ -1,0 +1,46 @@
+openapi: "3.0.2"
+schemas:
+  ImageSet:
+    description: A collection of images that will be processed in the 2D-3D pipeline.
+    type: object
+    required:
+      - createdAt
+      - imageArchive
+      - place
+      - status
+    properties:
+      cpsArchive: 
+        description: Zip archive of cps map files.
+        type: string
+        format: uri
+      createdAt:
+        description: Time in seconds since Unix Epoch that this record was created.
+        type: number 
+        format: double
+      imageArchive:
+        description: Zip archive of image files.
+        type: string
+        format: uri
+      logEvents:
+        type: array
+        items:
+          $ref: 'https://github.com/fantasmoio/api-spec/components/log-event.yaml'
+      masksArchive: 
+        description: Zip archive of semantic mask files.
+        type: string
+        format: uri
+      place:  
+        description: ID of the place that this object represents. 
+        type: string
+        format: uuid
+      poseArchive: 
+        description: Zip archive of poses json files.
+        type: string
+        format: uri
+      status:
+        description: Status in the 2D-3D processing pipeline.
+        type: string
+        enum:
+          - unprocessed
+          - processed
+

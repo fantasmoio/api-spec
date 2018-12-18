@@ -1,0 +1,32 @@
+openapi: "3.0.2"
+schemas:
+  MotionActivity:
+    description: The type of motion the device is undergoing as time of capture. Patterned after CMMotionActivity from iOS CoreMotion.
+    type: object
+    required:
+    properties:
+      automotive:
+        description: A Boolean indicating whether the device is in an automobile.
+        type: boolean
+      cycling:
+        description: A Boolean indicating whether the device is in a bicycle.
+        type: boolean
+      running:
+        description: A Boolean indicating whether the device is on a running person.
+        type: boolean
+      stationary:
+        description: A Boolean indicating whether the device is stationary.
+        type: boolean
+      unknown:
+        description: A Boolean indicating whether the type of motion is unknown.
+        type: boolean
+      walking:
+        description: A Boolean indicating whether the device is on a walking person.
+        type: boolean
+      confidence:
+        description: The confidence in the assessment of the motion type.
+        type: string
+        enum:
+          - low
+          - medium
+          - high

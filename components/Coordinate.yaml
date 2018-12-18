@@ -1,11 +1,17 @@
+openapi: "3.0.2"
 schemas:
-  Coordinate: # The geographical coordinate information.
+  Coordinate: 
+    description: The geographical coordinate information. Patterned after CLLocationCoordinate2D from iOS CoreLocation.
     type: object
     required:
       - latitude
       - longitude
     properties:
       latitude:
-        type: string
+        description: The latitude in degrees.
+        type: number
+        format: double
       longitude:
-        type: string
+        description: The longitude in degrees.
+        type: number
+        format: double

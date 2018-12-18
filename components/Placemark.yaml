@@ -1,27 +1,37 @@
+openapi: "3.0.2"
 schemas:
   Placemark:
+    description: A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information. Patterned after CLPlacemark from iOS CoreLocation.
     type: object
     required:
-      - name
-    description: A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
     properties:
       name:
+        description: The name of the placemark.
         type: string
       isoCountryCode:
+        description: The abbreviated country name.
         type: string
       country:
+        description: The name of the country associated with the placemark.
         type: string
       postalCode:
+        description: The postal code associated with the placemark.
         type: string
       administrativeArea:
+        description: The state or province associated with the placemark.
         type: string
       subAdministrativeArea:
+        description: Additional administrative area information for the placemark.
         type: string
       locality:
+        description: The city associated with the placemark.
         type: string
       subLocality:
+        description: Additional city-level information for the placemark.
         type: string
       thoroughfare:
+        description: The street address associated with the placemark.
         type: string
       subThoroughfare:
+        description: Additional street-level information for the placemark.
         type: string
