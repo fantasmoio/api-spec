@@ -32,6 +32,19 @@ schemas:
       ownerEmail:
         description: Email address of the owner.
         type: string
+      viewAccess:
+        description: When viewAccess is `Private`, only the user with an ID matching Place.ownedBy can view this Place. When viewAccess is `Organization`, only users belonging to an Organization with a name matching Place.organization can view this Place. When viewAccess is Public, all users can view this Place.
+        type: string
+        enum:
+        - Private
+        - Public
+        - Organization
+      writeAccess:
+        description: When writeAccess is `Private`, only the user with an ID matching Place.ownedBy can edit this Place. When writeAccess is `Organization`, only users belonging to an Organization with a name matching Place.organization can edit this Place.
+        type: string
+        enum:
+        - Private
+        - Organization
       placemark:
         $ref: 'https://github.com/fantasmoio/api-spec/components/placemark.yaml'
       location:
