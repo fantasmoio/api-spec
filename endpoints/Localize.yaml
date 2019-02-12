@@ -36,8 +36,8 @@ paths:
           name: queryPoseJson
           type: string
           description: >-
-            A JSON string conforming to '#/definitions/image' schema.
-          required: true
+            A JSON string conforming to '#/definitions/image' schema. If no queryPoseJson is provided, the server will attempt to retrieve it from the EXIF of the provided image.
+          required: false
         - in: formData
           name: image
           type: file
