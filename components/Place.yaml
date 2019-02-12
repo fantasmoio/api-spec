@@ -1,13 +1,13 @@
 openapi: "3.0.2"
 schemas:
   Place:
-    description: Canonical representation of a physical location that includes metadata and spatial data about that location. Scans and data can be added, updated to the map as it evolves overtime. 
+    description: Canonical representation of a physical location that includes metadata and spatial data about that location. Scans and data can be added, updated to the map as it evolves overtime.
     type: object
     required:
       - name
       - createdAt
     properties:
-      id: 
+      id:
         type: string
         format: uuid
       name:
@@ -15,20 +15,39 @@ schemas:
         type: string
       createdAt:
         description: Time in seconds since Unix Epoch that this record was created.
-        type: number 
-        format: double 
+        type: number
+        format: double
       updatedAt:
         description: Time in seconds since Unix Epoch that this record was updated.
-        type: number 
-        format: double 
+        type: number
+        format: double
       deletedAt:
         description: Time in seconds since Unix Epoch that this record was (soft) deleted.
-        type: number 
-        format: double 
+        type: number
+        format: double
       ownedBy:
         description: User ID of the owner.
         type: string
         format: uuid
+      ownerEmail:
+        description: Email address of the owner.
+        type: string
+      viewAccess:
+        description: When viewAccess is `Private`, only the user with an ID matching Place.ownedBy can view this Place. When viewAccess is `Organization`, only users belonging to an Organization with a name matching Place.organization can view this Place. When viewAccess is Public, all users can view this Place.
+        type: string
+        enum:
+        - Private
+        - Public
+        - Organization
+      writeAccess:
+        description: When writeAccess is `Private`, only the user with an ID matching Place.ownedBy can edit this Place. When writeAccess is `Organization`, only users belonging to an Organization with a name matching Place.organization can edit this Place.
+        type: string
+        enum:
+        - Private
+        - Organization
+      organization:
+        description: Organization name. Organization names are unique string identifiers created in and provided by the Auth0 Authorization Extension.
+        type: string
       placemark:
         $ref: 'https://github.com/fantasmoio/api-spec/components/placemark.yaml'
       location:
@@ -53,12 +72,12 @@ schemas:
       sensorDatas:
         description: IDs of uploaded sensor data associated with this place.
         type: array
-        items: 
+        items:
           type: string
           format: uuid
       imageSets:
         description: IDs of image sets associated with this place.
         type: array
-        items: 
+        items:
           type: string
           format: uuid
