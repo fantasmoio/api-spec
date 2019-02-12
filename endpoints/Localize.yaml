@@ -1,0 +1,208 @@
+swagger: '2.0'
+info:
+  version: 0.1.0
+  title: TerraOS Camera Positioning API
+  contact:
+    name: API Support
+    url: 'http://fantasmo.io/support'
+    email: support@fantasmo.io
+  license:
+    name: MIT
+host: api.fantasmo.io
+basePath: /v1
+paths:
+  /localize:
+    post:
+      summary: >-
+        Compute the 6 Degree-of-Freedom pose for a query image in the reference
+        frame of a target CPS map.
+      operationId: localizeImage
+      consumes:
+        - multipart/form-data
+      parameters:
+        - in: formData
+          name: userId
+          type: integer
+          format: int64
+          description: User ID.
+          required: true
+        - in: formData
+          name: mapId
+          type: integer
+          format: int64
+          description: Target map ID.
+          required: true
+        - in: formData
+          name: queryPoseJson
+          type: string
+          description: >-
+            A JSON string conforming to '#/definitions/image' schema.
+          required: true
+        - in: formData
+          name: image
+          type: file
+          description: Query image [file] encoded in JPEG.
+          required: true
+      responses:
+        '200':
+          description: >-
+            Global pose computed for the query image with respect to the target
+            map.
+          schema:
+            $ref: '#/definitions/pose'
+        default:
+          description: unexpected error
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  image:
+    type: object
+    required:
+      - timestamp
+      - uuid
+      - intrinsics
+    properties:
+      timestamp:
+        description: >-
+          Creation time in seconds since the Unix epoch (January 1st, 1970,
+          UTC).
+        type: number
+        format: double
+      uuid:
+        type: string
+        format: binary
+      intrinsics:
+        $ref: '#/definitions/intrinsics'
+      pose:
+        $ref: '#/definitions/pose'
+      motionType:
+        type: string
+        enum:
+          - stationary
+          - walking
+          - running
+          - automotive
+          - cycling
+          - unknown
+  position:
+    type: object
+    description: >-
+      3D Position in a right-handed coordinate system with -Y up (i.e., OpenCV
+      coordinate system).
+    required:
+      - x
+      - 'y'
+      - z
+    properties:
+      x:
+        description: Position along the x-axis in meters.
+        type: number
+        format: float
+      'y':
+        description: Position along the y-axis in meters.
+        type: number
+        format: float
+      z:
+        description: Position along the z-axis in meters.
+        type: number
+        format: float
+  quaternion:
+    type: object
+    required:
+      - w
+      - x
+      - 'y'
+      - z
+    properties:
+      w:
+        description: Normalized quaternion *w* component.
+        type: number
+        format: float
+      x:
+        description: Normalized quaternion *x* component.
+        type: number
+        format: float
+      'y':
+        description: Normalized quaternion *y* component.
+        type: number
+        format: float
+      z:
+        description: Normalized quaternion *z* component.
+        type: number
+        format: float
+  pose:
+    type: object
+    required:
+      - position
+      - quaternion
+    properties:
+      source:
+        type: string
+        enum:
+          - device
+          - keyframe
+          - interpolated
+      position:
+        $ref: '#/definitions/position'
+      quaternion:
+        $ref: '#/definitions/quaternion'
+  heading:
+    type: object
+    description: Direction of the image sensor relative to true north.
+    required:
+      - reading
+    properties:
+      reading:
+        description: Degrees relative to true north.
+        type: number
+        format: float
+      precision:
+        description: Standard deviation of the reading in degrees.
+        type: number
+        format: float
+  intrinsics:
+    type: object
+    required:
+      - fx
+      - fy
+      - cx
+      - cy
+    properties:
+      fx:
+        description: Focal length in pixels.
+        type: number
+        format: float
+      fy:
+        description: Focal length in pixels.
+        type: number
+        format: float
+      cx:
+        description: Principal point offset along the image *x* axis in pixels.
+        type: number
+        format: float
+      cy:
+        description: Principal point offset along the image *y* axis in pixels.
+        type: number
+        format: float
+      radialDistortion:
+        type: array
+        maximum: 6
+        items:
+          type: number
+          format: float
+      tangentialDistortion:
+        type: array
+        maximum: 2
+        items:
+          type: number
+          format: float
+  error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
