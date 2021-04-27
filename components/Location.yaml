@@ -11,11 +11,13 @@ schemas:
         type: number
         format: float
       coordinate:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/coordinate.yaml'
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Coordinate.yaml'
       floor:
         description: The logical floor of the building.
         type: integer
         format: int32
+      heading:
+        $ref: 'https://github.com/fantasmoio/api-spec/components/Heading.yaml'
       generatedAt:
         description: Time in seconds since Unix Epoch that this location was recorded.
         type: number

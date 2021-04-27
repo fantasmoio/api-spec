@@ -1,7 +1,7 @@
 openapi: "3.0.2"
 schemas:
   Coordinate: 
-    description: The geographical coordinate information. Patterned after CLLocationCoordinate2D from iOS CoreLocation.
+    description: A geographical coordinate in WGS84 format.
     type: object
     required:
       - latitude
