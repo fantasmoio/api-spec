@@ -1,32 +1,37 @@
 openapi: "3.0.2"
-schemas:
-  Location:
-    description: Geographical information relating to a sensor measurement. Patterned after CLLocation from iOS CoreLocation.
-    type: object
-    required:
-      - coordinate
-    properties:
-      altitude:
-        description: The altitude, measured in meters.
-        type: number
-        format: float
-      coordinate:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Coordinate.yaml'
-      floor:
-        description: The logical floor of the building.
-        type: integer
-        format: int32
-      heading:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/Heading.yaml'
-      generatedAt:
-        description: Time in seconds since Unix Epoch that this location was recorded.
-        type: number
-        format: double
-      horizontalAccuracy:
-        description: The radius of uncertainty for the location, measured in meters.
-        type: number
-        format: float
-      verticalAccuracy:
-        description: The accuracy of the altitude value, measured in meters.
-        type: number
-        format: float
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+    Location:
+      description: Geographical information relating to a sensor measurement. Patterned after CLLocation from iOS CoreLocation.
+      type: object
+      required:
+        - coordinate
+      properties:
+        altitude:
+          description: The altitude, measured in meters.
+          type: number
+          format: float
+        coordinate:
+          $ref: 'Coordinate.yaml'
+        floor:
+          description: The logical floor of the building.
+          type: integer
+          format: int32
+        heading:
+          $ref: 'Heading.yaml'
+        generatedAt:
+          description: Time in seconds since Unix Epoch that this location was recorded.
+          type: number
+          format: double
+        horizontalAccuracy:
+          description: The radius of uncertainty for the location, measured in meters.
+          type: number
+          format: float
+        verticalAccuracy:
+          description: The accuracy of the altitude value, measured in meters.
+          type: number
+          format: float

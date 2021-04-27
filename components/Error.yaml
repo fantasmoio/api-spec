@@ -1,12 +1,17 @@
 openapi: "3.0.2"
-schemas:
-  Error:
-      required:
-        - code
-        - message
-      properties:
-        code:
-          type: integer
-          format: int32
-        message:
-          type: string
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+    Error:
+        required:
+          - code
+          - message
+        properties:
+          code:
+            type: integer
+            format: int32
+          message:
+            type: string

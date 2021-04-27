@@ -1,17 +1,22 @@
 openapi: "3.0.2"
-schemas:
-  Coordinate: 
-    description: A geographical coordinate in WGS84 format.
-    type: object
-    required:
-      - latitude
-      - longitude
-    properties:
-      latitude:
-        description: The latitude in degrees.
-        type: number
-        format: double
-      longitude:
-        description: The longitude in degrees.
-        type: number
-        format: double
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+    Coordinate: 
+      description: A geographical coordinate in WGS84 format.
+      type: object
+      required:
+        - latitude
+        - longitude
+      properties:
+        latitude:
+          description: The latitude in degrees.
+          type: number
+          format: double
+        longitude:
+          description: The longitude in degrees.
+          type: number
+          format: double

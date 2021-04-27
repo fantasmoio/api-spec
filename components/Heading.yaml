@@ -1,16 +1,21 @@
 openapi: "3.0.2"
-schemas:
-	Heading:
-      description: The azimuth (orientation) of the image, relative to true north.
-      type: object 
-      required:
-        - value
-      properties:
-        accuracy:
-          description: Variance of the measurement in degrees.
-          type: number
-          format: float
-        value:
-          description: Degrees relative to true north.
-          type: number
-          format: float
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+  	Heading:
+        description: The azimuth (orientation) of the image, relative to true north.
+        type: object 
+        required:
+          - value
+        properties:
+          accuracy:
+            description: Variance of the measurement in degrees.
+            type: number
+            format: float
+          value:
+            description: Degrees relative to true north.
+            type: number
+            format: float
