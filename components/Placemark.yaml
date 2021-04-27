@@ -8,7 +8,6 @@ components:
     Placemark:
       description: A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information. Patterned after CLPlacemark from iOS CoreLocation.
       type: object
-      required:
       properties:
         name:
           description: The name of the placemark.
