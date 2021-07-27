@@ -1,27 +1,32 @@
 openapi: "3.0.2"
-schemas:
-  Orientation:
-    description: Quaternion representation of an orientation.
-    type: object
-    required:
-      - w
-      - x
-      - y
-      - z
-    properties:
-      w:
-        description: Normalized quaternion *w* component.
-        type: number
-        format: float
-      x:
-        description: Normalized quaternion *x* component.
-        type: number
-        format: float
-      y:
-        description: Normalized quaternion *y* component.
-        type: number
-        format: float
-      z:
-        description: Normalized quaternion *z* component.
-        type: number
-        format: float
+info:
+  title: ""
+  version: ""
+paths: {}
+components:
+  schemas:
+    Orientation:
+      description: Quaternion representation of an orientation.
+      type: object
+      required:
+        - w
+        - x
+        - y
+        - z
+      properties:
+        w:
+          description: Normalized quaternion *w* component.
+          type: number
+          format: float
+        x:
+          description: Normalized quaternion *x* component.
+          type: number
+          format: float
+        y:
+          description: Normalized quaternion *y* component.
+          type: number
+          format: float
+        z:
+          description: Normalized quaternion *z* component.
+          type: number
+          format: float

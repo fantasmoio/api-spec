@@ -1,25 +1,30 @@
 openapi: "3.0.2"
-schemas:
-  LogEvent:
-    description: An event be logged.
-    type: object
-    required:
-      - createdAt
-      - level
-      - message
-    properties:
-      createdAt:
-        description: Time in seconds since Unix Epoch that this record was created.
-        type: string
-        format: double
-      level:
-        description: Severity of the event.
-        type: string
-        enum:
-          - error
-          - warning
-          - info
-          - debug 
-      message:
-        description: Description of the event.
-        type: string
+info:
+  title: ""
+  version: ""
+paths: {}
+components:
+  schemas:
+    LogEvent:
+      description: An event be logged.
+      type: object
+      required:
+        - createdAt
+        - level
+        - message
+      properties:
+        createdAt:
+          description: Time in seconds since Unix Epoch that this record was created.
+          type: string
+          format: double
+        level:
+          description: Severity of the event.
+          type: string
+          enum:
+            - error
+            - warning
+            - info
+            - debug
+        message:
+          description: Description of the event.
+          type: string
