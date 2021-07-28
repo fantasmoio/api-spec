@@ -115,7 +115,7 @@ paths:
                       description: Dimension of rotation on the front-back axis.
                       type: number
                       format: float
-                totalTranslation:
+                totalDistance:
                   description: Total translation in meters since the latter of the start of the session and the last anchor set.
                   type: number
                   format: float
@@ -130,21 +130,44 @@ paths:
                     - iPadOS
                     - windows
                     - unknown
+                deviceOsVersion:
+                  description: OS version of the device that captured the image.
+                  type: string
                 sdkVersion:
                   description: Version number of the Fantasmo SDK that created the request.
                   type: string
-                Udid:
+                udid:
                   description: Universally unique device identifier.
                   type: string
                   format: uuid
-                SessionId:
+                localizationSessionId:
                   description: Localization session identifier. Multiple requests may be sent in a single session.
                   type: string
                   format: uuid
-                RideId:
-                  description: Ride session ID as specified by the operator.
+                appSessionId:
+                  description: App session identifer. It may be used to denote a user session that spans multiple localization sessions (e.g., ending a scooter ride, multi-zone AR experience, etc).
                   type: string
                   format: uuid
+                magneticData:
+                  description: Magnetic field measured by the magnetometer at the moment of image capture.
+                  type: object
+                  required:
+                    - x
+                    - y
+                    - z
+                  properties:
+                    x:
+                      description: X-axis magnetic field in microteslas.
+                      type: number
+                      format: float
+                    y:
+                      description: Y-axis magnetic field in microteslas.
+                      type: number
+                      format: float
+                    z:
+                      description: Z-axis magnetic field in microteslas.
+                      type: number
+                      format: float
                 frameEventCounts:
                   description: Number of frame events occuring since the latter of the start of the session and the last anchor set.
                   type: object
