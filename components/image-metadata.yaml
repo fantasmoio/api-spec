@@ -1,24 +1,28 @@
 openapi: "3.0.2"
-schemas:
-  ImageMetadata:
-    description: Metadata pertaining to an image.
-    type: object
-    required:
-      - filetype
-    properties:
-      filetype:
-        description: Extension of the file.
-        type: string
-      generatedAt:
-        description: Time in seconds since Unix Epoch that this image was captured on the device.
-        type: number
-        format: double
-      intrinsics:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/intrinsics.yaml'
-      motionActivity:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/motion-activity.yaml'
-      pose:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/pose.yaml'
-      resolution:
-        $ref: 'https://github.com/fantasmoio/api-spec/components/resolution.yaml'
-       
+info:
+  title: ""
+  version: ""
+paths: {}
+components:
+  schemas:
+    ImageMetadata:
+      description: Metadata pertaining to an image.
+      type: object
+      required:
+        - filetype
+      properties:
+        filetype:
+          description: Extension of the file.
+          type: string
+        generatedAt:
+          description: Time in seconds since Unix Epoch that this image was captured on the device.
+          type: number
+          format: double
+        intrinsics:
+          $ref: "./Intrinsics.yaml"
+        motionActivity:
+          $ref: "./Motion-activity.yaml"
+        pose:
+          $ref: "./Pose.yaml"
+        resolution:
+          $ref: "./ImageResolution.yaml"
