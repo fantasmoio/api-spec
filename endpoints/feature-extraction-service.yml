@@ -11,7 +11,7 @@ info:
 paths:
   /features.extract:
     post:
-      description: Run the provided image through the selected inference model to extract features.
+      description: Run the provided image through the selected inference model to extract features. The provided image will also be rotated (so that it's y axis is aligned with the gravity vector) and scaled according to the provided parameters.
       operationId: featureExtraction
       requestBody:
         content:
@@ -44,7 +44,7 @@ components:
         - featureType
         - image
         - intrinsics
-        - maxNrFeatures
+        - maxNumFeatures
       properties:
         featureType:
           $ref: "#/components/schemas/FeatureType"
@@ -56,26 +56,26 @@ components:
           format: binary
         intrinsics:
           $ref: "../components/Intrinsics.yaml"
-        maxNrFeatures:
+        maxNumFeatures:
           description: Maximum number of features to extract.
           type: number
           format: integer
         maxSidelength:
-          description: Greater of the height or width of the image in pixels which serves as an optional scaling parameter for the map.
+          description: Greater of the height or width of the image in pixels which serves as an optional scaling parameter for the map. If both maxSidelength and targetFocalLength are provided, targetFocalLength is preferred.
           type: number
           format: integer
         targetFocalLength:
-          description: Desired focal length of the image which serves as an optional scaling parameter for the map.
+          description: Desired focal length of the image which serves as an optional scaling parameter for the map. If both maxSidelength and targetFocalLength are provided, targetFocalLength is preferred.
           type: number
           format: float
     FeatureExtractionResult:
       required:
         - featureType
         - intrinsics
-        - maxNrFeatures
+        - numFeatures
       properties:
         featureDescriptors:
-          description: Feature descriptors (nrFeatures * featureDimension * featureDepth).
+          description: A 2d matrix of feature descriptors in row-major order with a total size of numFeatures * featureDimension * featureDepth bytes. Each row represents a single descriptor with featureDimension entries.
           type: string
           format: binary
         featureDepth:
@@ -90,10 +90,10 @@ components:
         featureType:
           $ref: "#/components/schemas/FeatureType"
         keypointLocations:
-          description: Keypoint locations (nrFeatures * 2 * 4 bytes, image coordinates).
+          description: A 2d matrix of keypoint locations in row-major order with a total size of numFeatures * 2 * 4 bytes. Each row represents the x,y coordinate of the respective descriptor in the scaled image represented as a single precision float.
           type: string
           format: binary
-        nrFeatures:
+        numFeatures:
           description: Number of features extracted.
           type: number
           format: integer
@@ -102,7 +102,7 @@ components:
     FeatureType:
       description: Feature type to extract.
       enum:
-        - d2net
+        - d2net_single_scale_00_05        # the default D2-net feature descriptor with a single scale and each raw dimension clipped to a range of [0-0.5]
     Gravity:
       description: If available, the orientation of the image as a unit quaternion in a local right-handed coordinate system with gravity in the positive y direction. If no gravity is provided, it is assumed that the image is perfectly gravity-aligned
       type: object
