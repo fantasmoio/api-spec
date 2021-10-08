@@ -9,7 +9,7 @@ info:
     name: Fantasmo Support
     email: hello@fantasmo.io
 paths:
-  /features.extract:
+  /v1/features.extract:
     post:
       description: Run the provided image through the selected inference model to extract features. The provided image will also be rotated (so that it's y axis is aligned with the gravity vector) and scaled according to the provided parameters.
       operationId: featureExtraction
