@@ -73,8 +73,12 @@ components:
         - featureType
         - intrinsics
         - numFeatures
+        - featureDimension
+        - featureDepth
+        - descriptors
+        - keypoints
       properties:
-        featureDescriptors:
+        descriptors:
           description: A 2d matrix of feature descriptors in row-major order with a total size of numFeatures * featureDimension * featureDepth bytes. Each row represents a single descriptor with featureDimension entries.
           type: string
           format: binary
@@ -83,13 +87,14 @@ components:
           enum:
             - uint8
             - float32
+            - float64
         featureDimension:
           description: Feature dimension.
           type: number
           format: integer
         featureType:
           $ref: "#/components/schemas/FeatureType"
-        keypointLocations:
+        keypoints:
           description: A 2d matrix of keypoint locations in row-major order with a total size of numFeatures * 2 * 4 bytes. Each row represents the x,y coordinate of the respective descriptor in the scaled image represented as a single precision float.
           type: string
           format: binary
