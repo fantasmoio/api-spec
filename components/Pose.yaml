@@ -10,7 +10,7 @@ components:
       type: object
       required:
         - position
-        - quaternion
+        - orientation
       properties:
         referenceFrame:
           description: When the reference frame is `local`, the origin of the coordinate system for this pose is relative to the device or the process that generated it. When the reference frame is `place`, the coordinate system of this pose is consistent with that of the place.
