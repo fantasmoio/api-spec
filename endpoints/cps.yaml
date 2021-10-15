@@ -210,7 +210,7 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/Result"
+                  - $ref: "../components/Result.yaml"
                   - $ref: "#/components/schemas/NoResult"
         "4XX":
           description: Client error.
@@ -236,20 +236,6 @@ components:
           format: int32
         message:
           type: string
-    Result:
-      description: CPS result.
-      required:
-        - message
-        - pose
-        - location
-      properties:
-        message:
-          description: Localization result description.
-          type: string
-        pose:
-          $ref: "../components/Pose.yaml"
-        location:
-          $ref: "../components/Location.yaml"
     NoResult:
       description: No CPS result.
       required:
