@@ -152,7 +152,6 @@ paths:
                 appSessionId:
                   description: App session identifer. It may be used to denote a user session that spans multiple localization sessions (e.g., ending a scooter ride, multi-zone AR experience, etc).
                   type: string
-                  format: uuid
                 magneticData:
                   description: Magnetic field measured by the magnetometer at the moment of image capture.
                   type: object
