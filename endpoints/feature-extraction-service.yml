@@ -1,0 +1,134 @@
+openapi: "3.0.2"
+x-explorer-enabled: false
+x-samples-enabled: false
+info:
+  version: 0.1.0
+  title: Feature Extraction Service
+  description: Deep learning feature extraction for correspondence matching.
+  contact:
+    name: Fantasmo Support
+    email: hello@fantasmo.io
+paths:
+  /v1/feature.extraction:
+    post:
+      description: Run the provided image through the selected inference model to extract features. The provided image will also be rotated (so that it's y axis is aligned with the gravity vector) and scaled according to the provided parameters.
+      operationId: featureExtraction
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/FeatureExtractionParameters"
+      responses:
+        "200":
+          description: Feature extraction result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeatureExtractionResult"
+        "4XX":
+          description: Client error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
+        "5XX":
+          description: Server error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
+components:
+  schemas:
+    FeatureExtractionParameters:
+      required:
+        - featureType
+        - image
+        - maxNumFeatures
+      properties:
+        featureType:
+          $ref: "#/components/schemas/FeatureType"
+        gravity:
+          $ref: "#/components/schemas/Gravity"
+        image:
+          description: Target image for feature extraction.
+          type: string
+          format: binary
+        intrinsics:
+          $ref: "../components/Intrinsics.yaml"
+        maxNumFeatures:
+          description: Maximum number of features to extract.
+          type: number
+          format: integer
+        maxSidelength:
+          description: Greater of the height or width of the image in pixels which serves as an optional scaling parameter for the map. If both maxSidelength and targetFocalLength are provided, targetFocalLength is preferred.
+          type: number
+          format: integer
+        targetFocalLength:
+          description: Desired focal length of the image which serves as an optional scaling parameter for the map. If both maxSidelength and targetFocalLength are provided, targetFocalLength is preferred.
+          type: number
+          format: float
+    FeatureExtractionResult:
+      required:
+        - featureType
+        - intrinsics
+        - numFeatures
+        - featureDimension
+        - featureDepth
+        - descriptors
+        - keypoints
+      properties:
+        descriptors:
+          description: A 2d matrix of feature descriptors in row-major order with a total size of numFeatures * featureDimension * featureDepth bytes. Each row represents a single descriptor with featureDimension entries.
+          type: string
+          format: binary
+        featureDepth:
+          description: Feature depth.
+          enum:
+            - uint8
+            - float32
+            - float64
+        featureDimension:
+          description: Feature dimension.
+          type: number
+          format: integer
+        featureType:
+          $ref: "#/components/schemas/FeatureType"
+        keypoints:
+          description: A 2d matrix of keypoint locations in row-major order with a total size of numFeatures * 2 * 4 bytes. Each row represents the x,y coordinate of the respective descriptor in the scaled image represented as a single precision float.
+          type: string
+          format: binary
+        numFeatures:
+          description: Number of features extracted.
+          type: number
+          format: integer
+        intrinsics:
+          $ref: "../components/Intrinsics.yaml"
+    FeatureType:
+      description: Feature type to extract.
+      enum:
+        - d2net_single_scale_00_05        # the default D2-net feature descriptor with a single scale and each raw dimension clipped to a range of [0-0.5]
+    Gravity:
+      description: If available, the orientation of the image as a unit quaternion in a local right-handed coordinate system with gravity in the positive y direction. If no gravity is provided, it is assumed that the image is perfectly gravity-aligned
+      type: object
+      required:
+        - w
+        - x
+        - y
+        - z
+      properties:
+        w:
+          description: The orientation quaternion's *w* coefficient
+          type: number
+          format: float
+        x:
+          description: The orientation quaternion's *x* coefficient
+          type: number
+          format: float
+        y:
+          description: The orientation quaternion's *y* coefficient
+          type: number
+          format: float
+        z:
+          description: The orientation quaternion's *z* coefficient
+          type: number
+          format: float
