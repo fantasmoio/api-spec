@@ -1,0 +1,26 @@
+openapi: "3.0.2"
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+    Result: 
+      description: A localization result.
+      type: object
+      required:
+        - pose
+        - uuid
+      properties:
+        pose:
+          $ref: "Pose.yaml"
+        uuid:
+          description: Universally unique identifier.
+          type: string
+          format: uuid
+        location:
+          $ref: "Location.yaml"
+        geofences:
+          type: array
+          items:
+            $ref: "Geofence.yaml"
