@@ -75,6 +75,7 @@ paths:
                   type: number
                   format: double
                 coordinate:
+                  description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
                   $ref: "../components/Coordinate.yaml"
                 image:
                   description: Query image for localization.
@@ -83,6 +84,9 @@ paths:
                 mapId:
                   description: ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.
                   type: string
+                location:
+                  description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                  $ref: "../components/Location.yaml"
                 intrinsics:
                   $ref: "../components/Intrinsics.yaml"
                 uuid:
@@ -90,6 +94,7 @@ paths:
                 gravity:
                   $ref: "#/components/schemas/Gravity"
                 position:
+                  description: If applicable, this indicates the approximate cps position at which the image was captured. Could be obtained, for example, by tracking from the previous position, markers, user input etc. The information will be used to determine the region of the map in which reference images will be searched.
                   $ref: "../components/Position.yaml"
                 referenceFrame:
                   $ref: "#/components/schemas/ReferenceFrame"
@@ -147,7 +152,6 @@ paths:
                 appSessionId:
                   description: App session identifer. It may be used to denote a user session that spans multiple localization sessions (e.g., ending a scooter ride, multi-zone AR experience, etc).
                   type: string
-                  format: uuid
                 magneticData:
                   description: Magnetic field measured by the magnetometer at the moment of image capture.
                   type: object
@@ -205,7 +209,7 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/Result"
+                  - $ref: "../components/Result.yaml"
                   - $ref: "#/components/schemas/NoResult"
         "4XX":
           description: Client error.
@@ -231,20 +235,6 @@ components:
           format: int32
         message:
           type: string
-    Result:
-      description: CPS result.
-      required:
-        - message
-        - pose
-        - location
-      properties:
-        message:
-          description: Localization result description.
-          type: string
-        pose:
-          $ref: "../components/Pose.yaml"
-        location:
-          $ref: "../components/Location.yaml"
     NoResult:
       description: No CPS result.
       required:
