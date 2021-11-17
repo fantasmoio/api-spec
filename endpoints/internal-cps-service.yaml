@@ -70,6 +70,8 @@ paths:
                   $ref: "../components/Position.yaml"
                 referenceFrame:
                   $ref: "#/components/schemas/ReferenceFrame"
+                localizationArguments:
+                  $ref: "#/components/schemas/LocalizationArguments"
                 numFeatures:
                   description: Number of features extracted.
                   type: number

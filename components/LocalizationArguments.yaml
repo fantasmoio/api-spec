@@ -1,0 +1,47 @@
+openapi: "3.0.2"
+info:
+  title: ''
+  version: ''
+paths: {}
+components:
+  schemas:
+    LocalizationArguments:
+      description: Internal arguments for the CPS localization algorithm 
+      type: object
+      properties:
+        matchingRadius:
+            description: For image retrieval stage. Restricts the max distance of ReferenceImages to the QueryImage
+            type: number
+            format: float
+        numReferenceImages: For image retrieval stage. The number of images to retrieve.
+            description: 
+            type: number
+            format: int32
+        maxNumRANSAC: For RANSAC. The maximum number of RANSAC iterations
+            description: 
+            type: number
+            format: int32
+        inlierThreshold: For RANSAC. Minimum fraction of inliers to correspondences to consider a pose valid. Must be between 0.0 and 1.0
+            description: 
+            type: number
+            format: float
+        minNumInliers: For RANSAC. Minimum absolute number of inliers to consider a pose valid.
+            description: 
+            type: number
+            format: int32
+        maxReprojectionError: For RANSAC. Maximum allowed reprojection error for a single 3D point to be considered an inlier.
+            description: 
+            type: number
+            format: float
+        averageTopN: For final pose estimation. The number of succesful poses to average
+            description: 
+            type: number
+            format: int32
+        loweThreshold: For correspondence estimation. The lowe threshold for considering the nearest neighbor as a match.
+            description: 
+            type: number
+            format: float
+        searchSteps: For mapping features to words. The number of search steps in the approx. nearest neighbor search in the dictionary.
+            description: 
+            type: number
+            format: int32
