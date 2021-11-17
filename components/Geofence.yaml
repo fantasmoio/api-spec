@@ -1,0 +1,26 @@
+openapi: "3.0.2"
+info:
+  title: ""
+  version: ""
+paths: {}
+components:
+  schemas:
+    Geofence:
+      description: A geofence information.
+      type: object
+      required:
+        - elementType
+        - elementID
+      properties:
+        elementType:
+          description: The geofence type.
+          type: string
+          enum:
+            - PARKING
+            - STREET
+            - SIDEWALK
+            - FURNITURE
+        elementID:
+          description: The geofence ID.
+          type: integer
+          format: int32
