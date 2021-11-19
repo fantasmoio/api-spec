@@ -13,6 +13,10 @@ components:
             description: For image retrieval stage. Restricts the max distance of ReferenceImages to the QueryImage
             type: number
             format: float
+        matchingFilterRatio:
+            description: For image retrieval stage. Selects the top-matchingFilterRatio % images based on TFIDS comparison and performs ImageRetrieval only on those.
+            type: number
+            format: float
         numReferenceImages: For image retrieval stage. The number of images to retrieve.
             description: 
             type: number
