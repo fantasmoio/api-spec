@@ -21,4 +21,27 @@ components:
         position:
           $ref: "./Position.yaml"
         orientation:
-          $ref: "./Orientation.yaml"
+          description: If available, the orientation of the image as a unit quaternion in a local right-handed coordinate system with gravity in the positive y direction. If no gravity is provided, it is assumed that the image is perfectly gravity-aligned
+          type: object
+          required:
+            - w
+            - x
+            - y
+            - z
+          properties:
+            w:
+              description: The orientation quaternion's *w* coefficient
+              type: number
+              format: float
+            x:
+              description: The orientation quaternion's *x* coefficient
+              type: number
+              format: float
+            y:
+              description: The orientation quaternion's *y* coefficient
+              type: number
+              format: float
+            z:
+              description: The orientation quaternion's *z* coefficient
+              type: number
+              format: float
