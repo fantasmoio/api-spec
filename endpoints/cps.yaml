@@ -42,7 +42,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "../components/schemas/RadiusSearchResult"
+                $ref: "#/components/schemas/RadiusSearchResult"
         "4XX":
           description: Client error.
           content:
@@ -94,14 +94,14 @@ paths:
                 intrinsics:
                   $ref: "../components/Intrinsics.yaml"
                 uuid:
-                  $ref: "../components/schemas/Uuid"
+                  $ref: "#/components/schemas/Uuid"
                 gravity:
-                  $ref: "../components/schemas/Gravity"
+                  $ref: "#/components/schemas/Gravity"
                 position:
                   description: If applicable, this indicates the approximate cps position at which the image was captured. Could be obtained, for example, by tracking from the previous position, markers, user input etc. The information will be used to determine the region of the map in which reference images will be searched.
                   $ref: "../components/Position.yaml"
                 referenceFrame:
-                  $ref: "../components/schemas/ReferenceFrame"
+                  $ref: "#/components/schemas/ReferenceFrame"
                 imageResolution:
                   $ref: "../components/ImageResolution.yaml"
                 rotationSpread:
@@ -173,7 +173,7 @@ paths:
                       type: number
                       format: integer
                 gravity:
-                  $ref: "../components/schemas/Gravity"
+                  $ref: "#/components/schemas/Gravity"
                 image:
                   description: Query image for localization.
                   type: string
@@ -215,7 +215,7 @@ paths:
                 position:
                   $ref: "../components/Position.yaml"
                 referenceFrame:
-                  $ref: "../components/schemas/ReferenceFrame"
+                  $ref: "#/components/schemas/ReferenceFrame"
                 rotationSpread:
                   description: Total rotation spread since the latter of the start of the session and the last anchor set. Computed as the difference between the minimum and maximum angle along principal axes in radians.
                   type: object
@@ -248,7 +248,7 @@ paths:
                   type: string
                   format: uuid
                 uuid:
-                  $ref: "../components/schemas/Uuid"
+                  $ref: "#/components/schemas/Uuid"
       responses:
         "200":
           description: A CPS localization result.
@@ -257,7 +257,7 @@ paths:
               schema:
                 oneOf:
                   - $ref: "../components/Result.yaml"
-                  - $ref: "../components/schemas/NoResult"
+                  - $ref: "#/components/schemas/NoResult"
         "4XX":
           description: Client error.
           content:
@@ -329,4 +329,4 @@ components:
         position:
           $ref: "../components/Position.yaml"
         orientation:
-          $ref: "../components/schemas/Gravity"
+          $ref: "#/components/schemas/Gravity"
