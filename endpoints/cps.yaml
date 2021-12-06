@@ -172,8 +172,6 @@ paths:
                       description: Total  number of frames.
                       type: number
                       format: integer
-                gravity:
-                  $ref: "#/components/schemas/Gravity"
                 image:
                   description: Query image for localization.
                   type: string
