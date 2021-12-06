@@ -11,7 +11,5 @@ jobs:
       - uses: readmeio/github-readme-sync@v2
         with:
           readme-oas-key: kS68YVRPArcyRMViMdqy4Bqjt49oC5xe:61ae0e8b8a486217fbe4a0c9
-           
-          # OPTIONAL CONFIG, use if necessary
           oas-file-path: './endpoints/cps.yaml'
           api-version: 'v0.5.2'
