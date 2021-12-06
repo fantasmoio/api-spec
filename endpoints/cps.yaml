@@ -31,7 +31,7 @@ paths:
                 - radius
               properties: # Request parts
                 coordinate:
-                  $ref: "../components/Coordinate.yaml"
+                  $ref: "../api-spec/components/Coordinate.yaml"
                 radius:
                   description: The radius (in meters) around which we check for parking availability
                   type: number
