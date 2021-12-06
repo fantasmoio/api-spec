@@ -14,4 +14,4 @@ jobs:
            
           # OPTIONAL CONFIG, use if necessary
           oas-file-path: './endpoints/cps.yaml'
-          #api-version: 'v3.0.2'
+          api-version: 'v1.0.0'
