@@ -48,7 +48,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "../components/Error.yaml"
+                $ref: "../api-spec/components/Error.yaml"
   /image.localize:
     post:
       description: Compute a high accuracy global position and orientation for the image.
@@ -76,7 +76,7 @@ paths:
                   format: double
                 coordinate:
                   description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Coordinate.yaml"
+                  $ref: "../api-spec/components/Coordinate.yaml"
                 image:
                   description: Query image for localization.
                   type: string
@@ -86,20 +86,20 @@ paths:
                   type: string
                 location:
                   description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Location.yaml"
+                  $ref: "../api-spec/components/Location.yaml"
                 intrinsics:
-                  $ref: "../components/Intrinsics.yaml"
+                  $ref: "../api-spec/components/Intrinsics.yaml"
                 uuid:
                   $ref: "#/components/schemas/Uuid"
                 gravity:
                   $ref: "#/components/schemas/Gravity"
                 position:
                   description: If applicable, this indicates the approximate cps position at which the image was captured. Could be obtained, for example, by tracking from the previous position, markers, user input etc. The information will be used to determine the region of the map in which reference images will be searched.
-                  $ref: "../components/Position.yaml"
+                  $ref: "../api-spec/components/Position.yaml"
                 referenceFrame:
                   $ref: "#/components/schemas/ReferenceFrame"
                 imageResolution:
-                  $ref: "../components/ImageResolution.yaml"
+                  $ref: "../api-spec/components/ImageResolution.yaml"
                 rotationSpread:
                   description: Total rotation spread since the latter of the start of the session and the last anchor set. Computed as the difference between the minimum and maximum angle along principal axes in radians.
                   type: object
@@ -209,20 +209,20 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "../components/Result.yaml"
+                  - $ref: "../api-spec/components/Result.yaml"
                   - $ref: "#/components/schemas/NoResult"
         "4XX":
           description: Client error.
           content:
             application/json:
               schema:
-                $ref: "../components/Error.yaml"
+                $ref: "../api-spec/components/Error.yaml"
         "5XX":
           description: Internal server error.
           content:
             application/json:
               schema:
-                $ref: "../components/Error.yaml"
+                $ref: "../api-spec/components/Error.yaml"
 components:
   schemas:
     RadiusSearchResult:
@@ -280,6 +280,6 @@ components:
         - orientation
       properties:
         position:
-          $ref: "../components/Position.yaml"
+          $ref: "../api-spec/components/Position.yaml"
         orientation:
           $ref: "#/components/schemas/Gravity"
