@@ -201,7 +201,7 @@ paths:
                 udid:
                   description: Universally unique device identifier.
                   type: string
-                  format: uuid
+                  format: string
       responses:
         "200":
           description: A CPS localization result.
