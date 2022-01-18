@@ -9,9 +9,9 @@ info:
     name: Fantasmo Support
     email: hello@fantasmo.io
 servers:
-  - url: https://api.fantasmo.io/v1
+  - url: https://api.fantasmo.io
 paths:
-  /parking.in.radius:
+  /v1/parking.in.radius:
     post:
       description: Check whether there is a parking available in a given radius around a GPS position
       operationId: isThereParkingInGivenRadius
@@ -49,7 +49,7 @@ paths:
             application/json:
               schema:
                 $ref: "../components/Error.yaml"
-  /image.localize:
+  /v1/image.localize:
     post:
       description: Compute a high accuracy global position and orientation for the image.
       operationId: localizeImage
@@ -223,6 +223,139 @@ paths:
             application/json:
               schema:
                 $ref: "../components/Error.yaml"
+  /v2/initialize:
+    post:
+      description: Initialize
+      operationId: initialize
+      parameters:
+        - in: header
+          name: Fantasmo-Key
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                coordinate:
+                  description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                  $ref: "../components/Coordinate.yaml"
+                location:
+                  description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                  $ref: "../components/Location.yaml"
+                deviceModel:
+                  description: Model of the device that captured the image.
+                  type: string
+                deviceOs:
+                  description: OS of the device that captured the image.
+                  enum:
+                    - android
+                    - iOS
+                    - iPadOS
+                    - windows
+                    - unknown
+                deviceOsVersion:
+                  description: OS version of the device that captured the image.
+                  type: string
+                sdkVersion:
+                  description: Version number of the Fantasmo SDK that created the request.
+                  type: string
+                hostAppBundleIdentifier:
+                  description: Host app's bundle identifier.
+                  type: string
+                hostAppMarketingVersion:
+                  description: Host app's marketing version as a string in the format "major.minor.patch".
+                  type: string
+                hostAppBuild:
+                  description: Host app's build number as a string.
+                  type: string
+                tags:
+                  description: Tags.
+                  type: object
+      responses:
+        "200":
+          description: Remote config.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InitializeResult"
+        "4XX":
+          description: Client error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
+  /v2/isLocalizationAvailable:
+    post:
+      description: Checks if localization is available
+      operationId: isLocalizationAvailable
+      parameters:
+        - in: header
+          name: Fantasmo-Key
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - location
+              properties:
+                coordinate:
+                  description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                  $ref: "../components/Coordinate.yaml"
+                location:
+                  description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                  $ref: "../components/Location.yaml"
+                deviceModel:
+                  description: Model of the device that captured the image.
+                  type: string
+                deviceOs:
+                  description: OS of the device that captured the image.
+                  enum:
+                    - android
+                    - iOS
+                    - iPadOS
+                    - windows
+                    - unknown
+                deviceOsVersion:
+                  description: OS version of the device that captured the image.
+                  type: string
+                sdkVersion:
+                  description: Version number of the Fantasmo SDK that created the request.
+                  type: string
+                hostAppBundleIdentifier:
+                  description: Host app's bundle identifier.
+                  type: string
+                hostAppMarketingVersion:
+                  description: Host app's marketing version as a string in the format "major.minor.patch".
+                  type: string
+                hostAppBuild:
+                  description: Host app's build number as a string.
+                  type: string
+                tags:
+                  description: Tags.
+                  type: object
+      responses:
+        "200":
+          description: Remote config.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  available:
+                    type: boolean
+        "4XX":
+          description: Client error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
 components:
   schemas:
     RadiusSearchResult:
@@ -283,3 +416,77 @@ components:
           $ref: "../components/Position.yaml"
         orientation:
           $ref: "#/components/schemas/Gravity"
+    InitializeResult:
+      description: Remote config
+      type: object
+      required:
+        - parking_in_radius
+        - config
+      properties:
+        parking_in_radius:
+          description: A boolean string result.
+          type: boolean
+        config:
+          description: Remote config.
+          type: object
+          required:
+            - frame_acceptance_threshold_timeout
+            - is_behavior_requester_enabled
+            - is_tracking_state_filter_enabled
+            - is_movement_filter_enabled
+            - movement_filter_threshold
+            - is_blur_filter_enabled
+            - blur_filter_variance_threshold
+            - blur_filter_sudden_drop_threshold
+            - blur_filter_average_throughput_threshold
+            - is_camera_pitch_filter_enabled
+            - camera_pitch_filter_max_upward_tilt
+            - camera_pitch_filter_max_downward_tilt
+            - is_image_quality_filter_enabled
+            - image_quality_filter_score_threshold
+            - image_quality_filter_model_uri
+            - image_quality_filter_model_version
+            - remote_config_id
+          properties:
+            frame_acceptance_threshold_timeout:
+              type: number
+              format: float
+            is_behavior_requester_enabled:
+              type: boolean
+            is_tracking_state_filter_enabled:
+              type: boolean
+            is_movement_filter_enabled:
+              type: boolean
+            movement_filter_threshold:
+              type: number
+              format: float
+            is_blur_filter_enabled:
+              type: boolean
+            blur_filter_variance_threshold:
+              type: number
+              format: float
+            blur_filter_sudden_drop_threshold:
+              type: number
+              format: float
+            blur_filter_average_throughput_threshold:
+              type: number
+              format: float
+            is_camera_pitch_filter_enabled:
+              type: boolean
+            camera_pitch_filter_max_upward_tilt:
+              type: number
+              format: float
+            camera_pitch_filter_max_downward_tilt:
+              type: number
+              format: float
+            is_image_quality_filter_enabled:
+              type: boolean
+            image_quality_filter_score_threshold:
+              type: number
+              format: float
+            image_quality_filter_model_uri:
+              type: string
+            image_quality_filter_model_version:
+              type: string
+            remote_config_id:
+              type: string
