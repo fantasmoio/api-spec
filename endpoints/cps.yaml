@@ -69,24 +69,28 @@ paths:
                 - image
                 - intrinsics
                 - uuid
+              anyOf:
+                - properties:
+                    coordinate:
+                      description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                      $ref: "../components/Coordinate.yaml"
+                - properties:
+                    location:
+                      description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                      $ref: "../components/Location.yaml"
+                - properties:
+                    mapId:
+                      description: ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.
+                      type: string
               properties: # Request parts
                 capturedAt:
                   description: Time in seconds since Unix Epoch that this image was captured.
                   type: number
                   format: double
-                coordinate:
-                  description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Coordinate.yaml"
                 image:
                   description: Query image for localization.
                   type: string
                   format: binary
-                mapId:
-                  description: ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.
-                  type: string
-                location:
-                  description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Location.yaml"
                 intrinsics:
                   $ref: "../components/Intrinsics.yaml"
                 uuid:
@@ -238,13 +242,16 @@ paths:
           application/json:
             schema:
               type: object
+              anyOf:
+              - properties:
+                  coordinate:
+                    description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                    $ref: "../components/Coordinate.yaml"
+              - properties:
+                  location:
+                    description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                    $ref: "../components/Location.yaml"
               properties:
-                coordinate:
-                  description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Coordinate.yaml"
-                location:
-                  description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
-                  $ref: "../components/Location.yaml"
                 deviceModel:
                   description: Model of the device that captured the image.
                   type: string
@@ -490,3 +497,6 @@ components:
               type: string
             remote_config_id:
               type: string
+        fantasmo_unavailable_reason":
+          description: Reason of failed initialization
+          type: string
