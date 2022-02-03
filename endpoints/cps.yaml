@@ -74,14 +74,17 @@ paths:
                     coordinate:
                       description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
                       $ref: "../components/Coordinate.yaml"
+                  required: [coordinate]
                 - properties:
                     location:
                       description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
                       $ref: "../components/Location.yaml"
+                  required: [location]
                 - properties:
                     mapId:
                       description: ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.
                       type: string
+                  required: [mapId]
               properties: # Request parts
                 capturedAt:
                   description: Time in seconds since Unix Epoch that this image was captured.
@@ -247,10 +250,12 @@ paths:
                   coordinate:
                     description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
                     $ref: "../components/Coordinate.yaml"
+                required: [coordinate]
               - properties:
                   location:
                     description: The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
                     $ref: "../components/Location.yaml"
+                required: [location]
               properties:
                 deviceModel:
                   description: Model of the device that captured the image.
