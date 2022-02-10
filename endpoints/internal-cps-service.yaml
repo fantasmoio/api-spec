@@ -1,0 +1,181 @@
+openapi: "3.0.2"
+x-explorer-enabled: false
+x-samples-enabled: false
+info:
+  version: 0.6.0
+  title: Camera Positioning System (CPS) API
+  description: High precision global position and orientation for monocular images.
+  contact:
+    name: Fantasmo Support
+    email: hello@fantasmo.io
+paths:
+  /v2/map/load:
+    get:
+      summary: Loads a map with the given ID. Returns once the map is fully loaded.
+      parameters:
+          -in: query
+          name: mapID
+          schema:
+              type: string
+          description: The mapID to load
+  /v2/map/unload:
+    get:
+      summary: Unloads/Removes a map with the given ID.
+      parameters:
+          -in: query
+          name: mapID
+          schema:
+              type: string
+          description: The mapID to unload
+  /v2/map/list:
+    get:
+      summary: Retrieves a list of the currently loaded maps, together with their estimated size in memory (in bytes)
+  /v2/info/mem:
+    get:
+      summary: Retrieves some information about the currently avalable/used memory on the machine
+  /v2/image.localize:
+    post:
+      description: Compute a high accuracy global position and orientation for the image descriptors.
+      operationId: localizeImage
+      requestBody:
+        content:
+          multipart/form-data: # Media type
+            schema: # Request payload
+              type: object
+              required:
+                - capturedAt
+                - intrinsics
+                - uuid
+                - mapId
+                - numFeatures
+                - featureDimension
+                - featureDepth
+                - keypoints
+                - descriptors
+              properties: # Request parts
+                capturedAt:
+                  description: Time in seconds since Unix Epoch that this image was captured.
+                  type: number
+                  format: double
+                mapId:
+                  description: ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.
+                  type: string
+                intrinsics:
+                  $ref: "../components/Intrinsics.yaml"
+                uuid:
+                  $ref: "#/components/schemas/Uuid"
+                gravity:
+                  $ref: "#/components/schemas/Gravity"
+                position:
+                  $ref: "../components/Position.yaml"
+                referenceFrame:
+                  $ref: "#/components/schemas/ReferenceFrame"
+                localizationArguments:
+                  $ref: "#/components/schemas/LocalizationArguments"
+                numFeatures:
+                  description: Number of features extracted.
+                  type: number
+                  format: integer
+                featureDimension:
+                  description: Feature dimension.
+                  type: number
+                  format: integer
+                featureDepth:
+                  description: Feature depth.
+                  enum:
+                    - uint8
+                    - float32
+                    - float64
+                keypoints:
+                    description: A 2d matrix of keypoint locations in row-major order with a total size of numFeatures * 2 * 4 bytes. Each row represents the x,y coordinate of the respective descriptor in the scaled image represented as a single precision float.
+                    type: string
+                    format: binary
+                descriptors:
+                    description: A 2d matrix of feature descriptors in row-major order with a total size of numFeatures * featureDimension * featureDepth bytes. Each row represents a single descriptor with featureDimension entries.
+                    type: string
+                    format: binary
+      responses:
+        "200":
+          description: A CPS localization result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: "#/components/schemas/Result"
+                  - $ref: "#/components/schemas/NoResult"
+        "4XX":
+          description: Client error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
+        "5XX":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "../components/Error.yaml"
+components:
+  schemas:
+    Result:
+      description: CPS result.
+      required:
+        - message
+        - pose
+        - uuid
+      properties:
+        message:
+          description: Localization result description.
+          type: string
+        pose:
+          $ref: "../components/Pose.yaml"
+        uuid:
+          $ref: "#/components/schemas/Uuid"
+    NoResult:
+      description: No CPS result.
+      required:
+        - message
+      properties:
+        message:
+          description: Localization result description.
+          type: string
+    Uuid:
+      description: Universally unique identifier.
+      type: string
+      format: uuid
+    Gravity:
+      description: If available, the orientation of the image as a unit quaternion in a local right-handed coordinate system with gravity in the positive y direction. If no gravity is provided, it is assumed that the image is perfectly gravity-aligned
+      type: object
+      required:
+        - w
+        - x
+        - y
+        - z
+      properties:
+        w:
+          description: The orientation quaternion's *w* coefficient
+          type: number
+          format: float
+        x:
+          description: The orientation quaternion's *x* coefficient
+          type: number
+          format: float
+        y:
+          description: The orientation quaternion's *y* coefficient
+          type: number
+          format: float
+        z:
+          description: The orientation quaternion's *z* coefficient
+          type: number
+          format: float
+    ReferenceFrame:
+      description: The position and orientation of a reference frame with respect to the image frame in local, right-handed coordinate system with gravity in the positive y direction. If this parameter is passed, the localization result will be the pose of the reference frame, and not of the localized image.
+      type: object
+      required:
+        - position
+        - orientation
+      properties:
+        position:
+          $ref: "../components/Position.yaml"
+        orientation:
+          $ref: "#/components/schemas/Gravity"
