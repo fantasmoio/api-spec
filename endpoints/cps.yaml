@@ -235,6 +235,190 @@ paths:
               schema:
                 $ref: ../components/Error.yaml
       deprecated: true
+  /v2/localize:
+    post:
+      description: Compute a high accuracy global position and orientation for the image.
+      operationId: localize
+      parameters:
+        - in: header
+          name: Fantasmo-Key
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - capturedAt
+                - image
+                - intrinsics
+                - uuid
+              anyOf:
+                - properties:
+                    coordinate:
+                      description: The gps coordinate from which the image is queried. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.
+                      $ref: ../components/Coordinate.yaml
+                  required:
+                    - coordinate
+                - properties:
+                    location:
+                      description: 'The most precise location at which the image was taken, potentially including uncertainty information. The information will be used to determine the map used to localize and the region of the map in which reference images will be searched.'
+                      $ref: ../components/Location.yaml
+                  required:
+                    - location
+                - properties:
+                    mapId:
+                      description: 'ID of the map to query. If no map ID is provided, the `coordinate` is used to perform a map lookup. If neither are provided, an error is returned.'
+                      type: string
+                  required:
+                    - mapId
+              properties:
+                capturedAt:
+                  description: Time in seconds since Unix Epoch that this image was captured.
+                  type: number
+                  format: double
+                image:
+                  description: Query image for localization.
+                  type: string
+                  format: binary
+                intrinsics:
+                  $ref: ../components/Intrinsics.yaml
+                uuid:
+                  $ref: '#/components/schemas/Uuid'
+                gravity:
+                  $ref: '#/components/schemas/Gravity'
+                position:
+                  description: 'If applicable, this indicates the approximate cps position at which the image was captured. Could be obtained, for example, by tracking from the previous position, markers, user input etc. The information will be used to determine the region of the map in which reference images will be searched.'
+                  $ref: ../components/Position.yaml
+                referenceFrame:
+                  $ref: '#/components/schemas/ReferenceFrame'
+                imageResolution:
+                  $ref: ../components/ImageResolution.yaml
+                rotationSpread:
+                  description: Total rotation spread since the latter of the start of the session and the last anchor set. Computed as the difference between the minimum and maximum angle along principal axes in radians.
+                  type: object
+                  required:
+                    - pitch
+                    - yaw
+                    - roll
+                  properties:
+                    pitch:
+                      description: Dimension of rotation on the up-down axis.
+                      type: number
+                      format: float
+                    yaw:
+                      description: Dimension of rotation on the left-right axis.
+                      type: number
+                      format: float
+                    roll:
+                      description: Dimension of rotation on the front-back axis.
+                      type: number
+                      format: float
+                totalDistance:
+                  description: Total translation in meters since the latter of the start of the session and the last anchor set.
+                  type: number
+                  format: float
+                deviceModel:
+                  description: Model of the device that captured the image.
+                  type: string
+                deviceOs:
+                  description: OS of the device that captured the image.
+                  enum:
+                    - android
+                    - iOS
+                    - iPadOS
+                    - windows
+                    - unknown
+                deviceOsVersion:
+                  description: OS version of the device that captured the image.
+                  type: string
+                frameEventCounts:
+                  description: Number of frame events occuring since the latter of the start of the session and the last anchor set.
+                  type: object
+                  required:
+                    - excessiveTilt
+                    - excessiveBlur
+                    - excessiveMotion
+                    - lossOfTracking
+                    - total
+                  properties:
+                    excessiveTilt:
+                      description: Number of frames experiencing excessive tilt.
+                      type: number
+                      format: integer
+                    excessiveBlur:
+                      description: Number of frames experiencing excessive blur.
+                      type: number
+                      format: integer
+                    excessiveMotion:
+                      description: Number of frames experiencing excessive motion.
+                      type: number
+                      format: integer
+                    lossOfTracking:
+                      description: Number of frames experiencing loss of tracking.
+                      type: number
+                      format: integer
+                    total:
+                      description: Total  number of frames.
+                      type: number
+                      format: integer
+                localizationSessionId:
+                  description: Localization session identifier. Multiple requests may be sent in a single session.
+                  type: string
+                  format: uuid
+                appSessionId:
+                  description: 'App session identifer. It may be used to denote a user session that spans multiple localization sessions (e.g., ending a scooter ride, multi-zone AR experience, etc).'
+                  type: string
+                magneticData:
+                  description: Magnetic field measured by the magnetometer at the moment of image capture.
+                  type: object
+                  required:
+                    - x
+                    - 'y'
+                    - z
+                  properties:
+                    x:
+                      description: X-axis magnetic field in microteslas.
+                      type: number
+                      format: float
+                    'y':
+                      description: Y-axis magnetic field in microteslas.
+                      type: number
+                      format: float
+                    z:
+                      description: Z-axis magnetic field in microteslas.
+                      type: number
+                      format: float
+                sdkVersion:
+                  description: Version number of the Fantasmo SDK that created the request.
+                  type: string
+                udid:
+                  description: Universally unique device identifier.
+                  type: string
+                  format: string
+      responses:
+        '200':
+          description: A CPS localization result.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: ../components/Result.yaml
+                  - $ref: '#/components/schemas/NoResult'
+        4XX:
+          description: Client error.
+          content:
+            application/json:
+              schema:
+                $ref: ../components/Error.yaml
+        5XX:
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: ../components/Error.yaml
   /v2/initialize:
     post:
       description: Initialize
