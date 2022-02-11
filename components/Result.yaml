@@ -1,26 +1,44 @@
-openapi: "3.0.2"
+openapi: 3.0.2
 info:
   title: ''
   version: ''
 paths: {}
 components:
   schemas:
-    Result: 
+    Result:
       description: A localization result.
       type: object
-      required:
-        - pose
-        - uuid
+      x-examples:
+        Result Example:
+          location:
+            altitude: null
+            coordinate:
+              latitude: 48.12844648934474
+              longitude: 11.572594491013957
+            floor: null
+            heading: null
+            horizontalAccuracy: null
+            verticalAccuracy: null
+          pose:
+            orientation:
+              w: 0.7334862947463989
+              x: 0.05050799623131752
+              'y': 0.6728534698486328
+              z: -0.08194533735513687
+            position:
+              x: -0.031705692410469055
+              'y': -0.8898949027061462
+              z: 9.929408073425293
+          uuid: c6241e04-974a-4131-8b36-044a11e2c8f1
       properties:
-        pose:
-          $ref: "Pose.yaml"
         uuid:
-          description: Universally unique identifier.
           type: string
           format: uuid
+        pose:
+          $ref: Pose.yaml
         location:
-          $ref: "Location.yaml"
-        geofences:
-          type: array
-          items:
-            $ref: "Geofence.yaml"
+          $ref: Location.yaml
+      required:
+        - uuid
+        - pose
+        - location
