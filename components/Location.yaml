@@ -23,7 +23,7 @@ components:
           format: int32
         heading:
           $ref: 'Heading.yaml'
-        generatedAt:
+        timestamp:
           description: Time in seconds since Unix Epoch that this location was recorded.
           type: number
           format: double
