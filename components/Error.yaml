@@ -1,4 +1,4 @@
-openapi: "3.0.2"
+openapi: 3.0.2
 info:
   title: ''
   version: ''
@@ -6,12 +6,20 @@ paths: {}
 components:
   schemas:
     Error:
-      required:
-        - code
-        - message
+      type: object
       properties:
         code:
           type: integer
           format: int32
         message:
           type: string
+        details:
+          type: string
+      required:
+        - code
+        - message
+      x-examples:
+        Localization Error:
+          code: 9999
+          message: Localization Error
+          details: Query image is not a valid JPEG.
